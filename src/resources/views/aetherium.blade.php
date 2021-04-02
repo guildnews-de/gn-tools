@@ -3,9 +3,6 @@
 
 @section('content')
 
-<div id="headerLogo">
-    <h1 id="header"><a href="https://www.guildnews.de/"><img src="/img/aetherium/DrachenLogoAlpha.png" alt="Guildnews Logo" height="110" /></a></h1>
-</div>
 <div id="lang">
     <button type="button" class="btn btn-default btn-xs" id="bEn">English</button>
     <button type="button" class="btn btn-default btn-xs" id="bGer">Deutsch</button>
@@ -28,7 +25,7 @@
             </div>
 
             <div id="inputGoal" class="input-group input">
-                <div class="input-group-addon" id="curGoal"><img src="/img/aetherium/aetherium.png"></div>
+                <div class="input-group-addon" id="curGoal"><img src={{ url("/assets/tool_aetherium/aetherium.png") }}></div>
                 <input id="aetheriumGoal" type="text" class="form-control">
             </div>
             <div id="inputAtm" class="input-group input">
@@ -75,9 +72,7 @@
     <p id="footer-3"><a href="https://www.guildnews.de/impressum/">Imprint</a></p>
 </div>
 
-<link href="/css/aetherium/bootstrap.min.css" rel="stylesheet">
-<link href="/css/aetherium/calculator.css" rel="stylesheet">
-<script src="/js/aetherium/jquery-1.11.2.min.js"></script>
-<script src="/js/aetherium/calculator.js"></script>
+<link href={{ url('css/calc.css') }} rel="stylesheet">
+<script src={{ url('js/calc.js') }}></script>
 
 @endsection

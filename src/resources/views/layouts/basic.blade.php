@@ -2,7 +2,8 @@
 
 <head>
     <title>@yield('title', 'Willkommen') | GuildNews Tools</title>
-    <link href="/css/app.css" rel="stylesheet">
+    <link href={{ url("css/app.css") }} rel="stylesheet">
+    <script src="{{ url('js/app.js') }}"></script>
 </head>
 
 <body>

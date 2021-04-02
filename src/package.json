@@ -11,8 +11,19 @@
     },
     "devDependencies": {
         "axios": "^0.21",
-        "laravel-mix": "^6.0.6",
+        "bootstrap": "^4.0.0",
+        "jquery": "^3.2",
+        "laravel-mix": "^6.0.13",
+        "laravel-mix-modernizr": "^1.0.2",
         "lodash": "^4.17.19",
-        "postcss": "^8.1.14"
+        "popper.js": "^1.12",
+        "postcss": "^8.1.14",
+        "sass": "^1.15.2",
+        "sass-loader": "^8.0.0",
+        "webpack-modernizr-loader": "^5.0.0"
+    },
+    "dependencies": {
+        "bootstrap": "^3.4.1",
+        "jquery": "^1.12.4"
     }
 }

@@ -18,9 +18,9 @@
     </ul>
     <a href="#header" id="note-totop"></a>
     <p align="center">
-        <a href="http://www.guildnews.de"><img class="image-first" src="/img/timer/GN_DrachenLogo3.png" height="100" alt="Guildnews Logo Dragon"></a>
-        <a href="http://db.guildnews.de"><img class="image-links" src="/img/timer/db_logo_german%20-neu.png" width="350" alt="Guild Wars 2 Database"></a>
-        <a href="http://www.guildnews.de/news/?nc=56"><img class="image-links" src="/img/timer/podcast%20news%20header.jpg" width="350" alt="Guildnews Podcast"></a>
+        <a href="http://www.guildnews.de"><img class="image-first" src={{ url("/assets/tool_timer/GN_DrachenLogo3.png") }} height="100" alt="Guildnews Logo Dragon"></a>
+        <a href="http://db.guildnews.de"><img class="image-links" src={{ url("/assets/tool_timer/db_logo_german-neu.png") }} width="350" alt="Guild Wars 2 Database"></a>
+        <a href="http://www.guildnews.de/news/?nc=56"><img class="image-links" src={{ url("/assets/tool_timer/podcastNewsHeader.jpg") }} width="350" alt="Guildnews Podcast"></a>
     </p>
 </div>
 
@@ -34,11 +34,7 @@
 </div>
 
 
-<link href="/css/timer/bootstrap.min.css" rel="stylesheet">
-<link href="/css/timer/toggler.css" rel="stylesheet">
-<link href="/css/timer/brightTimer.css" rel="stylesheet">
-<script src="/js/timer/jquery.min.js"></script>
-<script src="/js/timer/bootstrap.min.js"></script>
-<script src="/js/timer/index.js"></script>
+<link href={{ url('css/calc.css') }} rel="stylesheet">
+<script src={{ url('js/calc.js') }}></script>
 
 @endsection

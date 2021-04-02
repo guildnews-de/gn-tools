@@ -1,4 +1,5 @@
 const mix = require('laravel-mix');
+require('laravel-mix-modernizr');
 
 /*
  |--------------------------------------------------------------------------
@@ -12,6 +13,29 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
-    .postCss('resources/css/app.css', 'public/css', [
-        //
-    ]);
+    .css('resources/app.css', 'public/css');
+
+// Aetherium Calculator Mix
+mix.js('resources/tool_aetherium/calculator.js', 'public/js/calc.js')
+    .css( 'resources/tool_aetherium/css/calculator.css', 'public/css/calc.css' );
+
+// Gold per hour Mix
+mix.js([
+        'resources/tool_gold/console.js',
+        'resources/tool_gold/main.js'
+    ], 'public/js/gold_main.js')
+    .js([
+        'resources/tool_gold/vendor/fix-timer.min.js',
+        //'resources/tool_gold/vendor/fix-timer-worker.min.js',
+        'resources/tool_gold/vendor/jquery-ui.min.js',
+        'resources/tool_gold/vendor/highstock.js',
+        'resources/tool_gold/vendor/highcharts.js'
+    ], 'public/js/gold_vendor.js')
+    .css( 'resources/tool_gold/css/goldPerHour.css', 'public/css/gold.css')
+    .modernizr();
+
+// Timer Mix
+mix.js([
+        'resources/tool_timer/index.js'
+    ], 'public/js/timer.js')
+    .css( 'resources/tool_timer/css/toggler.css', 'public/css/timer.css')

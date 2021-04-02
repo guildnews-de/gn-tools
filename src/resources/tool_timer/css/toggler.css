@@ -1,0 +1,22 @@
+@import './brightTimer.css';
+@import './darkTimer.css';
+
+a.toggler {
+    color: #dfdfdf;
+    text-shadow: 2px 2px 1px #626262;
+    background: grey;
+    cursor: pointer;
+    border: 2px solid black;
+    border-right-width: 15px;
+    padding: 0 5px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: all .5s ease;
+}
+a.toggler.off {
+    color: black;
+    text-shadow: 2px 2px 1px white;
+    background: white;
+    border-right-width: 2px;
+    border-left-width: 15px;
+}

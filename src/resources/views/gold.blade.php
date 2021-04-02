@@ -3,8 +3,6 @@
 
 @section('content')
 
-<h1>Guild Wars 2 - Gold pro Stunde</h1>
-
 <div id="intro">
     <h2>Willkommen zu Guild Wars 2 - Gold pro Stunde</h2>
     <p>Diese Applikation verfolgt (<em>beinahe</em>) alles, was auf deinem Account vor sich geht und zeigt an, wie viel Gold du bekommen würdest, wenn du alles verkaufen würdest, was du erhalten hast, und wie viel Gold du verloren hast durch die
@@ -29,9 +27,9 @@
 </div>
 
 <div id="menu" style="display:none;">
-    <span id="about"><img src=/gold/about.png" alt="about" title="About">About</span>
+    <span id="about"><img src={{ url("/assets/tool_gold/about.png") }} alt="about" title="About">About</span>
     <span class="separator">|</span>
-    <span id="settings"><img src=/gold/settings.png" alt="settings" title="Settings">Einstellungen</span>
+    <span id="settings"><img src={{ url("/assets/tool_gold/settings.png" ) }}alt="settings" title="Settings">Einstellungen</span>
     <span class="separator">|</span>
     <span id="countdown"></span>
     <button id="stop">Stop</button>
@@ -236,22 +234,9 @@
     </div>
 </div>
 
-<link rel="stylesheet" href="/css/gold/normalize.css">
-<link rel="stylesheet" href="/css/gold/main.css">
-<link rel="stylesheet" href="/css/gold/goldPerHour.css">
-<link rel="stylesheet" href="/css/gold/spinner.css">
-<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,900' rel='stylesheet' type='text/css'>
-
-<script src="/js/gold/vendor/fix-timer.min.js"></script>
-<script src="/js/gold/vendor/modernizr-2.8.3.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script>
-    window.jQuery || document.write('<script src=/js/gold/vendor/jquery-1.11.3.min.js"><\/script>')
-</script>
+<link href={{ url('css/gold.css') }} rel="stylesheet">
 <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
-<script src="/js/gold/vendor/highstock.js"></script>
-<script src="/js/gold/console.js"></script>
-<script src="/js/gold/main.js"></script>
-
+<script src={{ url('js/gold_vendor.js') }}></script>
+<script src={{ url('js/gold_main.js') }}></script>
 
 @endsection

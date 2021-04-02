@@ -1,0 +1,35 @@
+header {
+    background: url('/assets/header.jpg') no-repeat fixed top left;
+    padding: 24px;
+}
+
+#header {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+#header_logo {
+    width: 320px;
+}
+
+body {
+    background-color: #dfdfdf;
+}
+
+#content, #header {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.header_nav a {
+    font-size: 18px;
+    color: #d7d6d6;
+    font-weight: bold;
+    padding: 10px;
+}
+
+#construct_alert {
+    font-size: 14px;
+    font-weight: bold;
+}

@@ -18,3 +18,7 @@ Route::view('/', 'welcome' );
 Route::view('/timer', 'timer');
 Route::view('/aetherium', 'aetherium');
 Route::view('/gold', 'gold');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
