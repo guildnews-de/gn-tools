@@ -1,0 +1,93 @@
+#header {
+    color: white;
+    text-shadow: 2px 2px 1px black;
+}
+
+#calculator {
+    margin: 0px 0px 20px;
+}
+
+
+
+#footer {
+    color: #CCCCCC;
+    padding-top: 10px;
+    margin: 20px 0 40px;
+    border-top: 1px solid #EEE;
+}
+
+
+td {
+    width: 8%;
+}
+
+#infos {
+    padding: 10px;
+    background: #6CAABD;
+    color: white;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+#border {
+    float: right;
+    width: 35%;
+    height: 270px;
+    padding: 5px;
+    margin-bottom: 15px;
+}
+
+#input {
+    height: 270px;
+    float: left;
+    padding: 10px;
+    width: 50%;
+    background: #e4e4e4;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    margin-bottom: 15px;
+    margin-left: 10px;
+}
+
+#mining {
+    width: 100%;
+}
+
+.input{
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+.selectCol {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+td{
+    padding: 15px;
+}
+
+.colInput{
+    text-align:center
+
+}
+
+.col{
+    font-weight: bold;
+}
+
+#bCalculate {
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+
+#frame{
+    height: 280px;
+}

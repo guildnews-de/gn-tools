@@ -1,0 +1,47 @@
+{
+  "de": {
+    "mining": "Abbaugeschwindigkeit",
+    "aetherium": "Ätherium<img src=\"img/aetherium/aetherium.png\">",
+    "calculate": "Berechne Zeit",
+    "goal": "Zu erreichende Menge",
+    "atm": "Momentane Menge",
+    "timeGoal": "Zeitpunkt der zu erreichende, benötigten Menge",
+    "time": "Tage:Stunden:Minuten",
+    "dev": "Entwickelt von <a href=\"https://twitter.com/durzan\">Durzan</a> für <a href=\"https://www.guildnews.de/\">Guildnews</a>. Letztes Update: 17.02.2016</p>",
+    "footer": "Dieser Rechner befindet sich noch in einer Alpha-Phase. Es kann daher zu Fehler bei der Berechnung kommen.",
+    "imprint": "<a href=\"https://www.guildnews.de/impressum/\">Impressum</a>",
+    "aethPerH": "Ätherium pro Stunde",
+    "mPerAeth": "Sekunden pro Ätherium",
+    "aethPerD": "Ätherium pro Tag"
+  },
+  "en": {
+    "mining": "Mining Rate",
+    "aetherium": "Aetherium<img src=\"img/aetherium/aetherium.png\">",
+    "calculate": "Calculate time",
+    "goal": "achievable amount",
+    "atm": "current amount",
+    "timeGoal": "time till amount to be achieved",
+    "time": "Days:Hours:Minutes",
+    "dev": "Developed by <a href=\"https://twitter.com/durzan\">Durzan</a> for <a href=\"https://www.guildnews.de/\">Guildnews</a>. Last update: 17/Feb/2016</p>",
+    "footer": "This calculator is in a alpha-phase, so there can be faults in the calculations.",
+    "imprint": "<a href=\"https://www.guildnews.de/impressum/\">Imprint</a>",
+    "aethPerH": "Aetherium per Hour",
+    "mPerAeth": "Seconds per Aetherium",
+    "aethPerD": "Aetherium per Day"
+  },
+  "fr": {
+    "mining": "Vitesse d'excavation",
+    "aetherium": "Étherium<img src=\"img/aetherium/aetherium.png\">",
+    "calculate": "Calculer",
+    "goal": "Objectif d'Étherium",
+    "atm": "Montant d'Étherium actuel",
+    "timeGoal": "Date à laquelle l'objectif sera atteint",
+    "time": "Jours:Heures:Minutes",
+    "dev": "Développé par <a href=\"https://twitter.com/durzan\">Durzan</a> pour <a href=\"https://www.guildnews.de/\">Guildnews</a>. Dernière mise à jour: 17/02/2016</p>",
+    "footer": "Ce calculateur est en phase alpha, quelques erreurs de calcul pourraient apparaître.",
+    "imprint": "<a href=\"https://www.guildnews.de/impressum/\">Impressum</a>",
+    "aethPerH": "Étherium par Heures",
+    "mPerAeth": "Secondes par Étherium",
+    "aethPerD": "Étherium par Jours"
+  }
+}

@@ -1,0 +1,27 @@
+header {
+    background: url(/img/header.jpg) no-repeat fixed top left;
+    overflow:
+    padding: 24px;
+}
+
+body {
+    background-color: #dfdfdf;
+}
+
+#header {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+#content, #header {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.header_nav a {
+    font-size: 18px;
+    color: #d7d6d6;
+    font-weight: bold;
+    padding: 10px;
+}
