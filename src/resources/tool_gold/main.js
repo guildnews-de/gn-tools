@@ -362,11 +362,11 @@
                 }
             });
 
-            $('#currencies').html('<table><tr><th><input type="checkbox" id="checkAllCurrencies"></th><th>Währung</th><th>Initial</th><th>Momentan</th><th>Differenz</th></tr></table>');
+            $('#currencies').html('<table class="table-hover table-striped"><tr><th><input type="checkbox" id="checkAllCurrencies"></th><th>Währung</th><th>Initial</th><th>Momentan</th><th>Differenz</th></tr></table>');
 
             currencies.forEach(function(currency) {
                 $('#currencies table').append('<tr data-currencyID="' + currency.id + '">' +
-                        '<td><input class="currencySelect" type="checkbox" value="' + currency.id + '" id="currency-' + currency.id +'"></td>' +
+                        '<td><input class="currencySelect form-check-inline" type="checkbox" value="' + currency.id + '" id="currency-' + currency.id +'"></td>' +
                         '<td><label for="currency-' + currency.id + '"><img width="25" height="25" src="' + currency.icon + '" alt="' + currency.name + '"> ' + currency.name + '</label></td>' +
                         '<td class="initialCurrencyValue">0</td><td class="currentCurrencyValue">0</td><td class="currencyDifference">0</td>' +
                         '</tr>');

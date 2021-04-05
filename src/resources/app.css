@@ -1,35 +1,20 @@
-header {
-    background: url('/assets/header.jpg') no-repeat fixed top left;
-    padding: 24px;
-}
-
-#header {
-    padding-top: 20px;
-    padding-bottom: 20px;
-}
-
-#header_logo {
-    width: 320px;
-}
-
 body {
-    background-color: #dfdfdf;
+    padding-top: 100px;
+  }
+
+#navbar-logo {
+    height: 48px;
 }
 
-#content, #header {
-    max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
+.page-lang > button, .theme-mode > button {
+    line-height: 1;
 }
 
-.header_nav a {
-    font-size: 18px;
-    color: #d7d6d6;
-    font-weight: bold;
-    padding: 10px;
+.navbar > .alert {
+    margin: auto;
+    margin-right: 10px;
 }
 
-#construct_alert {
-    font-size: 14px;
-    font-weight: bold;
+.card {
+    margin-bottom: 15px;
 }

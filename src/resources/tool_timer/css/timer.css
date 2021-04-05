@@ -35,13 +35,18 @@
 	text-align: center;
 }
 
+#navbar {
+	margin: 20px 0px 20px;
+	font-size: 1.2em;
+	font-weight: bold;
+}
 
-#lang-select {
+/* #lang-select {
 	height: 100%;
 	font-size: 0.8em;
 	padding: 2px 5px;
 	font-weight: normal;
-}
+} */
 
 #table-worldboss {
 	margin: 20px 0px 20px;
@@ -148,6 +153,13 @@
 
 .note-underline {
 	text-decoration: underline;
+}
+
+#footer {
+	color: #CCCCCC;
+	padding-top: 9px;
+	margin: 20px 0 40px;
+	border-top: 1px solid #EEE;
 }
 
 

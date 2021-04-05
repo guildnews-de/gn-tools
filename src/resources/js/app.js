@@ -1,2 +1,3 @@
 require('./bootstrap');
-//window.$ = window.jQuery = require('jquery');
+
+// require('@fortawesome/fontawesome-free');

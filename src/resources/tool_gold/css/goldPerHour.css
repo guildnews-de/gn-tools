@@ -1,33 +1,6 @@
-@import './main.css';
-@import './normalize.css';
+/* @import './main.css'; */
+/* @import './normalize.css'; */
 @import './spinner.css';
-
-/* Basic elements */
-button {
-    background: linear-gradient(#F52B2B, #A70000);
-    border: 1px solid gray;
-    color: white;
-    padding: 5px 10px;
-    vertical-align: middle;
-}
-
-button:hover {
-    background: linear-gradient(#FF7E7E, #E80404);
-}
-
-footer {
-    color: #8A8A8A;
-    margin-top: 30px;
-    text-align: center;
-}
-
-footer a {
-    color: #8A8A8A;
-}
-
-label {
-    margin-right: 10px;
-}
 
 /* Borders */
 .borderTop {
@@ -73,27 +46,6 @@ label {
     width: 20px;
     height: 100%;
 }
-
-/* Intro page */
-#intro {
-    background: url(/assets/tool_gold/grey.png);
-    box-shadow: 0px 0px 65px 2px #000000;
-    box-sizing: border-box;
-    margin: auto;
-    padding: 30px;
-    position: relative;
-    width: 675px;
-}
-
-#apiKey {
-    font-family: courrier;
-    font-size: 14px;
-    padding: 10px 5px;
-    text-align: center;
-    vertical-align: middle;
-    width: 550px;
-}
-
 
 /* Main page */
 .goldIcon, .silverIcon, .copperIcon {
@@ -148,14 +100,9 @@ label {
 }
 
 #main {
-    background: url(/assets/tool_gold/grey.png);
-    box-sizing: border-box;
     display: none;
-    margin: auto;
-    padding: 30px;
     position: relative;
     transition: box-shadow 1s ease-in-out;
-    width: 94%;
 }
 
 #summary {
@@ -166,7 +113,7 @@ label {
     transition: color 0.3s linear;
 }
 
-#header {
+/* #header {
     display: flex;
     flex-wrap: wrap;
     border-bottom: 1px solid #C1C1C1;
@@ -186,9 +133,9 @@ label {
     margin:auto;
     max-width: 750px;
     width: 100%;
-}
+} */
 
-#otherCurrencies {
+/* #otherCurrencies {
     display: flex;
     flex-wrap: wrap;
 }
@@ -218,17 +165,17 @@ label {
 #currencies td, #currencies th {
     border: 1px solid gray;
     padding: 1px 4px;
-}
+} */
 
 .initialCurrencyValue, .currentCurrencyValue, .currencyDifference {
     text-align: right;
 }
 
-#currencies th {
+/* #currencies th {
     background-color: #A70000;
     background: linear-gradient(#F52B2B, #A70000);
     color: #FFFFFF;
-}
+} */
 
 .currencyPositive {
     background-color: #D4FFD4;
@@ -591,28 +538,4 @@ span.clearAPIKey {
     cursor: pointer;
     margin-left: 20px;
     text-decoration: underline;
-}
-
-/* Responsive */
-@media (max-width: 970px) {
-    #intro {
-        width: 75%;
-    }
-
-    #apiKey {
-        width: 75%;
-    }
-
-    #menu {
-        display: block;
-        float: none;
-        margin-bottom: 15px;
-        margin-left: 3%;
-        margin-top: -20px;
-        white-space: nowrap;
-    }
-
-    #aboutPopup, #settingsPopup {
-        max-width: 650px;
-    }
 }

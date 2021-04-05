@@ -1,235 +1,244 @@
-function changeCSS(e, t)
-{
-    var n = document.getElementsByTagName("link").item(t),
-        s = document.createElement("link");
-    s.setAttribute("rel", "stylesheet"), s.setAttribute("type", "text/css"), s.setAttribute("href", e), document.getElementsByTagName("head").item(0).replaceChild(s, n)
+function getTimezone () {
+	var offset = new Date().getTimezoneOffset();
+	return (offset * -1 / 60.0);
 }
 
-function getURLParam(e)
-{
-    var t = "",
-        n = window.location.href;
-    if (n.indexOf("?") > -1)
-        for (var s = n.substr(n.indexOf("?")).toLowerCase(), a = s.split("&"), o = 0; o < a.length; o++)
-            if (a[o].indexOf(e.toLowerCase() + "=") > -1)
-            {
-                var i = a[o].split("=");
-                t = i[1];
-                break
-            } return unescape(t)
+function getTimezoneOffsetStr () {
+	var tz=getTimezone();
+	var hh = parseInt(tz);
+	var mm = (tz - Math.floor(tz)) * 60;
+
+	var str = "UTC";
+	str += (tz >= 0 ? "+" : "") + hh;
+	str += (mm == 0 ? "" : ":" + mm)
+	return str;
 }
 
-function buildElement(e, t, n, s)
-{sr
-    if (n)
-    {
-        var a = '<div class="row table-content scale-' + e[t].scale + " " + e[t].id + ' + interesting"><div class="col-sm-4 wbframe' + s + '"><span class="wbid" hidden>' + e[t].id + "</span>" + e[t].name + '<span class="wbmap">' + (e[t].map ? " - " + e[t].map : "") + '</span></div><div class="col-sm-3 localtime">' + e[t].lctime + '</div><div class="col-sm-3 utctime">' + e[t].uptime + '</div><div><table><tr><td><img src="/assets/tool_timer/waypointicon.png" alt="Waypoint Icon" width="32" height="32"></td><td><div class="col-sm-2 waypoint">' + e[t].waypoint + "</div></td></tr></table></div></div>";
-        $("#table-worldboss").append(a)
+function str2sec (str) {
+	var a = str.split(':');
+	return ((+a[0]) * 60 * 60 + (+a[1]) * 60);
+}
+
+function sec2str (sec) {
+	var hh = parseInt( sec / 3600 ) % 24;
+	var mm = parseInt( sec / 60 ) % 60;
+	var ss = sec % 60;
+//	return ((hh < 10 ? "0" + hh : hh) + ":" + (mm < 10 ? "0" + mm : mm) + ":" + (ss  < 10 ? "0" + ss : ss));
+	return ((hh < 10 ? "0" + hh : hh) + ":" + (mm < 10 ? "0" + mm : mm));
+}
+
+function sortByTime(a, b) {
+	var now = new Date();
+	var nowoffset = str2sec(now.getHours()+":"+now.getMinutes());
+	var x = a.lcsec - nowoffset + 1800;
+	var y = b.lcsec - nowoffset + 1800;
+	if (x < 0) x += 86400;
+	if (y < 0) y += 86400;
+	return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+}
+
+function getnowtime() {
+	var now = new Date();
+	var hh = now.getHours();
+	var mm = now.getMinutes();
+	var ss = now.getSeconds();
+	return ((hh < 10 ? "0" + hh : hh) + ":" + (mm < 10 ? "0" + mm : mm) + ":" + (ss  < 10 ? "0" + ss : ss));
+}
+
+function refreshall () {
+	var clang = (getCookie("lang")?getCookie("lang"):"en");
+	$(".table-content").remove();
+	$.getJSON("/assets/tool_timer/wbtime.json", function(json) {
+		var i = 0;
+		var k = 0;
+		var wbt = new Array();
+		while(json.worldboss[i]) {
+			var j = 0;
+			while(json.worldboss[i].uptime[j]) {
+				sec = str2sec(json.worldboss[i].uptime[j]);
+				lsec = sec + (getTimezone() * 3600)
+				if (lsec >= 86400) lsec -= 86400;
+				if (lsec < 0) lsec += 86400;
+				var tname = (json.worldboss[i].name[clang]?json.worldboss[i].name[clang]:json.worldboss[i].name.en);
+				var tmap = (json.worldboss[i].map[clang]?json.worldboss[i].map[clang]:json.worldboss[i].map.en);
+				wbt[k++] = {
+//					id: json.worldboss[i].name.replace(/\s+/g, ''),
+					id: json.worldboss[i].id,
+					name: tname,
+					map: tmap,
+					uptime: json.worldboss[i].uptime[j],
+					upsec: sec,
+					lctime: sec2str(lsec),
+					lcsec: lsec,
+					scale: json.worldboss[i].scale,
+					waypoint: json.worldboss[i].waypoint
+				};
+				j++;
+			}
+			i++;
+		}
+		wbt.sort(sortByTime);
+		for (i = 0; i<k; i++) {
+			var donechk = wbdonecheck(wbt[i].id)?" done":"";
+			var tmp = '<div class="row table-content scale-'+wbt[i].scale+' '+wbt[i].id+'">'
+				+'<div class="col-sm-4 wbframe'+donechk+'"><span class="wbid" hidden>'+wbt[i].id+'</span>'+wbt[i].name+'<span class="wbmap">'+(wbt[i].map?" - "+wbt[i].map:"")+'</span></div>'
+				+'<div class="col-sm-3 localtime">'+wbt[i].lctime+'</div>'
+				+'<div class="col-sm-3 utctime">'+wbt[i].uptime+'</div>'
+				+'<div class="col-sm-2 waypoint">'+wbt[i].waypoint+'</div>'
+				+'</div>';
+			$("#table-worldboss").append(tmp);
+		}
+	});
+}
+
+function getCookie(cname) {
+	var name = cname + "=";
+	var ca = document.cookie.split(';');
+	for(var i=0; i<ca.length; i++) {
+		var c = ca[i].trim();
+		if (c.indexOf(name)==0) return c.substring(name.length,c.length);
+	}
+	return "";
+}
+
+function setCookie(cname, cval, cexp) {
+	document.cookie = cname + "=" + cval + "; expires=" + cexp +";";
+}
+
+Array.prototype.clean = function(deleteValue) {
+  for (var i = 0; i < this.length; i++) {
+    if (this[i] == deleteValue) {
+      this.splice(i, 1);
+      i--;
     }
-    else
-    {
-        var a = '<div class="row table-content scale-' + e[t].scale + " " + e[t].id + '"><div class="col-sm-4 wbframe' + s + '"><span class="wbid" hidden>' + e[t].id + "</span>" + e[t].name + '<span class="wbmap">' + (e[t].map ? " - " + e[t].map : "") + '</span></div><div class="col-sm-3 localtime">' + e[t].lctime + '</div><div class="col-sm-3 utctime">' + e[t].uptime + '</div><div><table><tr><td><img src="/assets/tool_timer/waypointicon.png" alt="Waypoint Icon" width="32" height="32"></td><td><div class="col-sm-2 waypoint">' + e[t].waypoint + "</div></td></tr></table></div></div>";
-        $("#table-worldboss").append(a)
-    }
+  }
+  return this;
+};
+
+function wbdone(wbval) {
+	var wbd = getCookie('wbdone').split('/');
+	var wbset = $.inArray( wbval, wbd );
+	if (wbset > -1) {
+		wbd.splice(wbset, 1);
+	} else {
+		wbd.push(wbval);
+	}
+	wbd.clean("");
+	wbval = wbd.join("/");
+
+	var now = new Date();
+	var expire = new Date();
+	expire.setUTCFullYear(now.getUTCFullYear());
+	expire.setUTCMonth(now.getUTCMonth());
+	expire.setUTCDate(now.getUTCDate()+1);
+	expire.setUTCHours(0);
+	expire.setUTCMinutes(0);
+	expire.setUTCSeconds(0);
+	setCookie("wbdone", wbval, expire.toUTCString());
 }
 
-function sameTime(e, t)
-{
-    return e.lctime === t.lctime ? !0 : !1
+function wbdonecheck(wbval) {
+	var wbd = getCookie('wbdone').split('/');
+	var wbset = $.inArray( wbval, wbd );
+	if (wbset > -1) {
+		return true;
+	} else {
+		return false
+	}
 }
 
-function getTimezone()
-{
-    var e = (new Date).getTimezoneOffset();
-    return -1 * e / 60
+function TTSi ( text ) {
+	var section, frame;
+	section   = document.getElementsByTagName( "head" )[ 0 ];
+	frame     = document.createElement( "iframe" );
+	frame.src = 'http://translate.google.com/translate_tts?ie=utf-8&tl=en&q=' + escape( text );
+	section.appendChild( frame );
 }
 
-function getTimezoneOffsetStr()
-{
-    var e = getTimezone(),
-        t = parseInt(e),
-        n = 60 * (e - Math.floor(e)),
-        s = "UTC";
-    return s += (e >= 0 ? "+" : "") + t, s += 0 == n ? "" : ":" + n
+function TTS5 ( text ) {
+	var audio = new Audio();
+	audio.src = 'http://translate.google.com/translate_tts?ie=utf-8&tl=en&q=' + escape( text );
+	audio.autoplay = true;
+console.log(audio);
 }
 
-function str2sec(e)
-{
-    var t = e.split(":");
-    return 60 * +t[0] * 60 + 60 * +t[1]
+function TTS ( text ) {
+	var msg = new SpeechSynthesisUtterance(text);
+	window.speechSynthesis.speak(msg);
 }
 
-function sec2str(e)
-{
-    var t = parseInt(e / 3600) % 24,
-        n = parseInt(e / 60) % 60;
-    return (10 > t ? "0" + t : t) + ":" + (10 > n ? "0" + n : n)
+function getLang(tolang) {
+	$.getJSON("assets/tool_timer/lang.json", function(json) {
+		for(var k in json[tolang]) {
+			if (k != "lang-name") {
+				var langhtml = json[tolang][k];
+				if (typeof json[tolang][k] === "object") {
+					langhtml = json[tolang][k].join("");
+				}
+				$("#"+k).html(langhtml);
+			}
+		};
+	});
 }
 
-function sortByTime(e, t)
-{
-    var n = new Date,
-        s = str2sec(n.getHours() + ":" + n.getMinutes()),
-        a = 300,
-        o = e.lcsec - s + a,
-        i = t.lcsec - s + a;
-    return 0 > o && (o += 86400), 0 > i && (i += 86400), i > o ? -1 : o > i ? 1 : 0
+function refreshlang() {
+	var clang = getCookie("lang");
+
+	// $.getJSON("assets/tool_timer/lang.json", function(json) {
+	// 	for(var k in json) {
+	// 		if (k == clang) {
+	// 			$("#lang-select").append($("<option>").text(json[k]["lang-name"]).attr("value", k).attr("selected", true));
+	// 		} else {
+	// 			$("#lang-select").append($("<option>").text(json[k]["lang-name"]).attr("value", k));
+	// 		}
+	// 	};
+	// });
+
+	getLang(clang?clang:"en");
 }
 
-function getnowtime()
-{
-    var e = new Date,
-        t = e.getHours(),
-        n = e.getMinutes(),
-        s = e.getSeconds();
-    return (10 > t ? "0" + t : t) + ":" + (10 > n ? "0" + n : n) + ":" + (10 > s ? "0" + s : s)
-}
+$( document ).ready(function() {
+	$("#nowtimezone").append(" ("+getTimezoneOffsetStr()+")");
 
-function refreshall()
-{
-    var e = getCookie("lang") ? getCookie("lang") : "de";
-    $(".table-content").remove(), $.getJSON("./assets/tool_timer/wbtime.json", function(t)
-    {
-        for (var n = 0, s = 0, a = new Array; t.worldboss[n];)
-        {
-            for (var o = 0; t.worldboss[n].uptime[o];)
-            {
-                sec = str2sec(t.worldboss[n].uptime[o]), lsec = sec + 3600 * getTimezone(), lsec >= 86400 && (lsec -= 86400), 0 > lsec && (lsec += 86400);
-                var i = t.worldboss[n].name[e] ? t.worldboss[n].name[e] : t.worldboss[n].name.de,
-                    l = t.worldboss[n].map[e] ? t.worldboss[n].map[e] : t.worldboss[n].map.de;
-                a[s++] = {
-                    id: t.worldboss[n].id,
-                    name: i,
-                    map: l,
-                    uptime: t.worldboss[n].uptime[o],
-                    upsec: sec,
-                    lctime: sec2str(lsec),
-                    lcsec: lsec,
-                    scale: t.worldboss[n].scale,
-                    waypoint: t.worldboss[n].waypoint
-                }, o++
-            }
-            n++
-        }
-        for (a.sort(sortByTime), n = 0; s > n; n++)
-        {
-            var r = wbdonecheck(a[n].id) ? " done" : "";
-            0 == n && sameTime(a[n], a[n + 1]) ? (buildElement(a, n, !0, r), buildElement(a, n + 1, !0, wbdonecheck(a[n + 1].id) ? " done" : ""), n++) : 0 == n ? buildElement(a, n, !0, r) : buildElement(a, n, !1, r)
-        }
-    })
-}
+	refreshlang();
+	refreshall();
 
-function getCookie(e)
-{
-    for (var t = e + "=", n = document.cookie.split(";"), s = 0; s < n.length; s++)
-    {
-        var a = n[s].trim();
-        if (0 == a.indexOf(t)) return a.substring(t.length, a.length)
-    }
-    return ""
-}
+	setInterval(function() {
+		$("#nowtime").html(getnowtime());
+		var rn = new Date();
+		var rs = rn.getSeconds();
+		// auto refresh table at 0 second
+		if (rs == 0) refreshall();
+	},1000);
 
-function setCookie(e, t, n)
-{
-    document.cookie = e + "=" + t + "; expires=" + n + ";"
-}
+	$("#lang-select").change(function() {
+		getLang($("#lang-select option:selected").val());
+		var now = new Date();
+		var expire = new Date();
+		expire.setFullYear(now.getFullYear() + 10);
+		setCookie("lang", $("#lang-select option:selected").val(), expire );
+		refreshall();
+	});
 
-function wbdone(e)
-{
-    var t = getCookie("wbdone").split("/"),
-        n = $.inArray(e, t);
-    n > -1 ? t.splice(n, 1) : t.push(e), t.clean(""), e = t.join("/");
-    var s = new Date,
-        a = new Date;
-    a.setUTCFullYear(s.getUTCFullYear()), a.setUTCMonth(s.getUTCMonth()), a.setUTCDate(s.getUTCDate() + 1), a.setUTCHours(0), a.setUTCMinutes(0), a.setUTCSeconds(0), setCookie("wbdone", e, a.toUTCString())
-}
+	$( document ).on("click", ".waypoint:not(:has(input))", function() {
+		var text = this;
+		var chatlink = $("<input class='chatlink' type='text' value='"+$( text ).text()+"' />");
+		$( text ).html( chatlink );
+		chatlink.one("focusout", function() {
+			$( text ).html($( this ).val());
+		}).focus().select();
+	});
 
-function wbdonecheck(e)
-{
-    var t = getCookie("wbdone").split("/"),
-        n = $.inArray(e, t);
-    return n > -1 ? !0 : !1
-}
+	$( document ).on("click", ".wbframe", function() {
+		var twbid = $(this).children("span.wbid").html();
+		wbdone(twbid);
+		$("."+twbid+">.wbframe").toggleClass("done");
+	});
 
-function TTSi(e)
-{
-    var t, n;
-    t = document.getElementsByTagName("head")[0], n = document.createElement("iframe"), n.src = "http://translate.google.com/translate_tts?ie=utf-8&tl=en&q=" + escape(e), t.appendChild(n)
-}
-
-function TTS5(e)
-{
-    var t = new Audio;
-    t.src = "http://translate.google.com/translate_tts?ie=utf-8&tl=en&q=" + escape(e), t.autoplay = !0, console.log(t)
-}
-
-function TTS(e)
-{
-    var t = new SpeechSynthesisUtterance(e);
-    window.speechSynthesis.speak(t)
-}
-
-function getLang(e)
-{
-    $.getJSON("./assets/tool_timer/lang.json", function(t)
-    {
-        for (var n in t[e])
-            if ("lang-name" != n)
-            {
-                var s = t[e][n];
-                "object" == typeof t[e][n] && (s = t[e][n].join("")), $("#" + n).html(s)
-            }
-    })
-}
-
-function refreshlang()
-{
-    var e = getCookie("lang");
-    $.getJSON("./assets/tool_timer/lang.json", function(t)
-    {
-        for (var n in t) $("#lang-select").append(n == e ? $("<option>").text(t[n]["lang-name"]).attr("value", n).attr("selected", !0) : $("<option>").text(t[n]["lang-name"]).attr("value", n))
-    }), getLang(e ? e : "de")
-}
-Array.prototype.clean = function(e)
-{
-    for (var t = 0; t < this.length; t++) this[t] == e && (this.splice(t, 1), t--);
-    return this
-}, $(document).ready(function()
-{
-    "dark" === getURLParam("design") ? (changeCSS("darkTimer.css", 2), $("a.toggler").toggleClass("off")) : "bright" === getURLParam("design") ? changeCSS("brightTimer.css", 2) : changeCSS("brightTimer.css", 2), $("#nowtimezone").append(" (" + getTimezoneOffsetStr() + ")"), refreshlang(), refreshall(), setInterval(function()
-    {
-        $("#nowtime").html(getnowtime());
-        var e = new Date,
-            t = e.getSeconds();
-        0 == t && refreshall()
-    }, 1e3), $("#lang-select").change(function()
-    {
-        getLang($("#lang-select option:selected").val());
-        var e = new Date,
-            t = new Date;
-        t.setFullYear(e.getFullYear() + 10), setCookie("lang", $("#lang-select option:selected").val(), t), refreshall()
-    }), $(document).on("click", ".waypoint:not(:has(input))", function()
-    {
-        var e = this,
-            t = $("<input class='chatlink' type='text' value='" + $(e).text() + "' />");
-        $(e).html(t), t.one("focusout", function()
-        {
-            $(e).html($(this).val())
-        }).focus().select()
-    }), $(document).on("click", ".wbframe", function()
-    {
-        var e = $(this).children("span.wbid").html();
-        wbdone(e), $("." + e + ">.wbframe").toggleClass("done")
-    }), $("a.toggler").click(function()
-    {
-        $(this).toggleClass("off");
-        var e = $(this).attr("class");
-        return "toggler" == e ? (window.location.href = "http://tools.guildnews.de/timer/?design=dark", !1) : (window.location.href = "http://tools.guildnews.de/timer/?design=bright", !1)
-    }), $(document).on("mouseenter", ".table-content", function()
-    {
-        $("." + $(this).children(".wbframe").children(".wbid").html()).addClass("row-highlight")
-    }), $(document).on("mouseleave", ".table-content", function()
-    {
-        $("." + $(this).children(".wbframe").children(".wbid").html()).removeClass("row-highlight")
-    })
+	$( document ).on("mouseenter", ".table-content", function() {
+		$("."+$(this).children(".wbframe").children(".wbid").html()).addClass("row-highlight");
+	});
+	$( document ).on("mouseleave", ".table-content", function() {
+		$("."+$(this).children(".wbframe").children(".wbid").html()).removeClass("row-highlight");
+	});
 });

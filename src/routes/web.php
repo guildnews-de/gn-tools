@@ -13,7 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::view('/', 'welcome' );
+Route::get('/', 'App\Http\Controllers\MenuController@getMenu');
+
+//Route::view('/', 'welcome' );
 
 Route::view('/timer', 'timer');
 Route::view('/aetherium', 'aetherium');
