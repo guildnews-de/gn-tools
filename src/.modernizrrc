@@ -1,0 +1,13 @@
+/*
+ * .modernizrrc
+ */
+
+module.exports = {
+  "options": [
+    "addTest",
+  ],
+  "feature-detects": [
+    "test/css/flexbox",
+    "test/css/transforms"
+  ]
+};

@@ -1,0 +1,20 @@
+body {
+    padding-top: 100px;
+  }
+
+#navbar-logo {
+    height: 48px;
+}
+
+.page-lang > button, .theme-mode > button {
+    line-height: 1;
+}
+
+.navbar > .alert {
+    margin: auto;
+    margin-right: 10px;
+}
+
+.card {
+    margin-bottom: 15px;
+}
