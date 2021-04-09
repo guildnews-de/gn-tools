@@ -13,7 +13,7 @@
     //Animation duration - used for all animations
     var ANIMATION_DURATION = 200;
     //Sound effect
-    var SOUND_EFFECT = new Audio('ding.mp3');
+    var SOUND_EFFECT = new Audio('/assets/tool_gold/ding.mp3');
 
 //Variables
     //Application started on
@@ -362,7 +362,7 @@
                 }
             });
 
-            $('#currencies').html('<table class="table-hover table-striped"><tr><th><input type="checkbox" id="checkAllCurrencies"></th><th>Währung</th><th>Initial</th><th>Momentan</th><th>Differenz</th></tr></table>');
+            $('#currencies').html('<table class="table table-hover table-striped table-sm"><tr><th><input type="checkbox" id="checkAllCurrencies"></th><th>Währung</th><th>Initial</th><th>Momentan</th><th>Differenz</th></tr></table>');
 
             currencies.forEach(function(currency) {
                 $('#currencies table').append('<tr data-currencyID="' + currency.id + '">' +

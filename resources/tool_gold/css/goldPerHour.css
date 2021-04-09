@@ -340,6 +340,10 @@
     cursor: pointer;
 }
 
+#currencies label {
+    margin: 0px;
+}
+
 #settingsPopup hr {
     margin: 0.5em 0;
 }

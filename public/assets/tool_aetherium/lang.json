@@ -1,7 +1,7 @@
 {
   "de": {
     "mining": "Abbaugeschwindigkeit",
-    "aetherium": "Ätherium<img src=\"pic/aetherium.png\">",
+    "aetherium": "Ätherium<img src=\"/assets/tool_aetherium/aetherium.png\">",
     "calculate": "Berechne Zeit",
     "goal": "Zu erreichende Menge",
     "atm": "Momentane Menge",
@@ -16,7 +16,7 @@
   },
   "en": {
     "mining": "Mining Rate",
-    "aetherium": "Aetherium<img src=\"pic/aetherium.png\">",
+    "aetherium": "Aetherium<img src=\"/assets/tool_aetherium/aetherium.png\">",
     "calculate": "Calculate time",
     "goal": "achievable amount",
     "atm": "current amount",
@@ -31,7 +31,7 @@
   },
   "fr": {
     "mining": "Vitesse d'excavation",
-    "aetherium": "Étherium<img src=\"pic/aetherium.png\">",
+    "aetherium": "Étherium<img src=\"/assets/tool_aetherium/aetherium.png\">",
     "calculate": "Calculer",
     "goal": "Objectif d'Étherium",
     "atm": "Montant d'Étherium actuel",

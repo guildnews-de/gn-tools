@@ -80,12 +80,12 @@ function refreshall () {
 		wbt.sort(sortByTime);
 		for (i = 0; i<k; i++) {
 			var donechk = wbdonecheck(wbt[i].id)?" done":"";
-			var tmp = '<tr class="table-content scale-'+wbt[i].scale+' '+wbt[i].id+'">'
-				+'<td class="wbframe'+donechk+'"><span class="wbid" hidden>'+wbt[i].id+'</span>'+wbt[i].name+'<span class="wbmap">'+(wbt[i].map?" - "+wbt[i].map:"")+'</span></td>'
-				+'<td class="localtime">'+wbt[i].lctime+'</td>'
-				+'<td class="utctime">'+wbt[i].uptime+'</td>'
-				+'<td class="waypoint">'+wbt[i].waypoint+'</td>'
-				+'</tr>';
+			var tmp = '<div class="row table-content scale-'+wbt[i].scale+' '+wbt[i].id+'">'
+				+'<div class="col-sm-4 wbframe'+donechk+'"><span class="wbid" hidden>'+wbt[i].id+'</span>'+wbt[i].name+'<span class="wbmap">'+(wbt[i].map?" - "+wbt[i].map:"")+'</span></div>'
+				+'<div class="col-sm-3 localtime">'+wbt[i].lctime+'</div>'
+				+'<div class="col-sm-3 utctime">'+wbt[i].uptime+'</div>'
+				+'<div class="col-sm-2 waypoint">'+wbt[i].waypoint+'</div>'
+				+'</div>';
 			$("#table-worldboss").append(tmp);
 		}
 	});
@@ -222,7 +222,7 @@ $( document ).ready(function() {
 
 	$( document ).on("click", ".waypoint:not(:has(input))", function() {
 		var text = this;
-		var chatlink = $("<input class='chatlink' type='text' size=12 value='"+$( text ).text()+"' readonly>");
+		var chatlink = $("<input class='chatlink' type='text' value='"+$( text ).text()+"' />");
 		$( text ).html( chatlink );
 		chatlink.one("focusout", function() {
 			$( text ).html($( this ).val());

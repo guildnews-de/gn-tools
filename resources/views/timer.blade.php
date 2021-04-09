@@ -6,25 +6,29 @@
 <div class="container">
 
     <h2>Weltboss Timer</h2>
-    <div id="table-worldboss">
-        <div class="row table-header">
-            <div class="col-sm-4" id="wbname-div">
-                <span id="wbname-title"></span>
-            </div>
-            <div class="col-sm-3" id="localtime-div">
-                <span id="localtime-title"></span><br>
-                <span id="nowtimezone" class="table-sub-header">
-                    <span id="nowtime"></span></span>
-            </div>
-            <div class="col-sm-3" id="utctime-div">
-                <span id="utctime-title"></span><br>
-                <span class="table-sub-header">(UTC)</span>
-            </div>
-            <div class="col-sm-2" id="waypoint-div">
-                <span id="waypoint-title"></span>
-            </div>
-        </div>
-    </div>
+
+    <table id="table-worldboss" class="table table-striped">
+        <thead class="">
+            <tr class="table-header">
+                <th class="" id="wbname-div">
+                    <span id="wbname-title"></span>
+                </th>
+                <th class="" id="localtime-div">
+                    <span id="localtime-title"></span><br>
+                    <span id="nowtimezone" class="table-sub-header">
+                        <span id="nowtime"></span></span>
+                </th>
+                <th class="" id="utctime-div">
+                    <span id="utctime-title"></span><br>
+                    <span class="table-sub-header">(UTC)</span>
+                </th>
+                <th class="" id="waypoint-div">
+                    <span id="waypoint-title"></span>
+                </th>
+            </tr>
+        </thead>
+    </table>
+
 
 
     <div id="note">

@@ -5,8 +5,10 @@
 
 <div class="container-fluid">
 
+    <script src={{ url('js/gold_head.js') }}></script>
+
     <div id="intro" class="row">
-        <div class="card col-sm-8">
+        <div class="card col-lg-8">
             <div class="card-header">
                 <h2>Willkommen zu Guild Wars 2 - Gold pro Stunde</h2>
             </div>
@@ -31,7 +33,7 @@
             </div>
         </div>
 
-        <div class="card bg-secondary text-white col-sm-4">
+        <div class="card bg-secondary text-white col-lg-4">
             <div class="card-header">
                 <h4>Um zu beginnen, gebe hier einen API Schlüssel ein:</h4>
             </div>
@@ -70,7 +72,7 @@
             </div>
             <div class="card-body">
                 <div id="header" class="row">
-                    <div id="headerLeft" class="col-sm-6">
+                    <div id="headerLeft" class="col-lg-6">
                         <table id="summary" class="table-striped">
                             <tr>
                                 <td>Initiales Gold (<span id="startTime"></span>):</td>
@@ -106,7 +108,7 @@
                             </tr>
                         </table>
                     </div>
-                    <div id="headerRight" class="col-sm-6">
+                    <div id="headerRight" class="col-lg-6">
                         <div id="chart"></div>
                     </div>
                 </div>
@@ -163,8 +165,8 @@
             </div>
             <div class="card-body">
                 <div id="otherCurrencies" class="row">
-                    <div id="currencies" class="col-sm-6"></div>
-                    <div id="currenciesGraph" class="col-sm-6"></div>
+                    <div id="currencies" class="col-lg-6"></div>
+                    <div id="currenciesGraph" class="col-lg-6"></div>
                 </div>
             </div>
 
@@ -293,7 +295,8 @@
     </div>
 
     <link href={{ url('css/gold.css') }} rel="stylesheet">
-    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+    {{-- <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script> --}}
+
     <script src={{ url('js/gold_vendor.js') }}></script>
     <script src={{ url('js/gold_main.js') }}></script>
 
