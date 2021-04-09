@@ -11,8 +11,6 @@ package-lock.json
 # Laravel
 .env
 .env.backup
-/public/*
-!/public/assets
 storage/*.key
 Homestead.yaml
 Homestead.json
