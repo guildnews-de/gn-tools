@@ -1,0 +1,47 @@
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+
+$theme-colors:	(
+    "light": $gray-200,
+    "light-sec": $gray-100,
+    "dark": $gray-800,
+    "dark-sec": $gray-600,
+    "midnight": $gray-600,
+    "secondary": $gray-400,
+);
+
+.nav-item:hover {
+    
+    border-radius: 1em;
+}
+
+.navbar-light .nav-item:hover {
+    background-color: $gray-400;
+}
+
+.navbar-dark .nav-item:hover {
+    background-color: $gray-700;
+}
+
+
+.btn-light {
+    background-color: $gray-300,
+}
+
+#navbar-logo {
+    height: 48px;
+  }
+  
+  .page-lang > button, .theme-mode > button {
+    line-height: 1;
+  }
+  
+  .navbar .alert {
+    margin: auto;
+    margin-right: 10px;
+    font-size: 0.8em;
+  }
+  
+  .card {
+    margin-bottom: 15px;
+  }
